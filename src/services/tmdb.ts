@@ -17,7 +17,8 @@ export const getImageUrl = (path: string, size: string = "original") =>
 export const getTrending = (timeWindow: "day" | "week" = "week") =>
   tmdbApi.get(`/trending/movie/${timeWindow}`);
 
-export const getPopular = () => tmdbApi.get("/movie/popular");
+export const getPopular = (page: number = 1) =>
+  tmdbApi.get("/movie/popular", { params: { page } });
 
 export const getTopRated = () => tmdbApi.get("/movie/top_rated");
 

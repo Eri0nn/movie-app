@@ -8,6 +8,15 @@ import { CalendarDays, Clock } from "lucide-react";
 
 type TimeWindow = "day" | "week";
 
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  overview: string;
+  release_date: string;
+  vote_average: number;
+}
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -19,7 +28,7 @@ const container = {
 };
 
 export function Trending() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [timeWindow, setTimeWindow] = useState<TimeWindow>("week");
 
@@ -56,7 +65,7 @@ export function Trending() {
         >
           <Tabs
             value={timeWindow}
-            onValueChange={(value: TimeWindow) => setTimeWindow(value)}
+            onValueChange={(value) => setTimeWindow(value as TimeWindow)}
           >
             <TabsList>
               <TabsTrigger value="day" className="flex items-center gap-2">

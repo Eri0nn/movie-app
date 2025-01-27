@@ -13,6 +13,15 @@ import {
 
 type MovieFilter = "popular" | "top_rated";
 
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  overview: string;
+  release_date: string;
+  vote_average: number;
+}
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -24,7 +33,7 @@ const container = {
 };
 
 export function Movies() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<MovieFilter>("popular");
 

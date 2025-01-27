@@ -54,7 +54,7 @@ export function Popular() {
       const filteredMovies =
         selectedCategory === "All"
           ? newMovies
-          : newMovies.filter((movie) =>
+          : newMovies.filter((movie: Movie) =>
               movie.genre_ids.includes(genreIds[selectedCategory])
             );
 

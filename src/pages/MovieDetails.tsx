@@ -211,7 +211,6 @@ export function MovieDetails() {
               animate="animate"
               className="flex absolute bottom-8 gap-8 items-end"
             >
-              {/* Poster */}
               <motion.div
                 variants={fadeIn}
                 className="md:block hidden overflow-hidden w-64 rounded-lg shadow-2xl"

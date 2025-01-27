@@ -203,7 +203,7 @@ export function MovieDetails() {
             backgroundImage: `url(${getImageUrl(movie.backdrop_path)})`,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+          <div className="from-background via-background/80 absolute inset-0 bg-gradient-to-t to-transparent" />
           <div className="container relative h-full">
             <motion.div
               variants={stagger}
@@ -214,7 +214,7 @@ export function MovieDetails() {
               {/* Poster */}
               <motion.div
                 variants={fadeIn}
-                className="hidden md:block w-64 rounded-lg shadow-2xl overflow-hidden"
+                className="md:block hidden overflow-hidden w-64 rounded-lg shadow-2xl"
               >
                 <img
                   src={getImageUrl(movie.poster_path, "w500")}
@@ -227,23 +227,23 @@ export function MovieDetails() {
                 <motion.div variants={fadeIn} className="space-y-2">
                   <div className="flex gap-4 justify-between items-start">
                     <div className="space-y-2">
-                      <h1 className="text-4xl md:text-5xl font-bold text-white">
+                      <h1 className="md:text-5xl text-4xl font-bold text-white">
                         {movie.title}
                       </h1>
                       {movie.tagline && (
-                        <p className="text-xl italic text-primary">
+                        <p className="text-primary text-xl italic">
                           {movie.tagline}
                         </p>
                       )}
                     </div>
-                    <div className="hidden md:flex gap-2">
+                    <div className="md:flex hidden gap-2">
                       {videos.length > 0 && (
                         <Dialog>
                           <Button
                             size="lg"
                             className="bg-primary text-primary-foreground hover:bg-primary/90"
                           >
-                            <Play className="mr-2 h-5 w-5" />
+                            <Play className="mr-2 w-5 h-5" />
                             Watch Trailer
                           </Button>
                           <DialogContent className="max-w-4xl">
@@ -272,7 +272,7 @@ export function MovieDetails() {
                                           : "hover:bg-muted"
                                       }`}
                                     >
-                                      <p className="text-sm font-medium line-clamp-2">
+                                      <p className="line-clamp-2 text-sm font-medium">
                                         {video.name}
                                       </p>
                                     </button>
@@ -290,8 +290,7 @@ export function MovieDetails() {
                       >
                         <Bookmark
                           className={`mr-2 h-5 w-5 ${
-                            inWatchlist ? "fill-current" : ""
-                          }`}
+                            inWatchlist ? "fill-current" : ""}`}
                         />
                         {inWatchlist ? "In Watchlist" : "Add to Watchlist"}
                       </Button>
@@ -301,25 +300,25 @@ export function MovieDetails() {
                         className="w-10 h-10"
                         onClick={handleShare}
                       >
-                        <Share2 className="h-5 w-5" />
+                        <Share2 className="w-5 h-5" />
                       </Button>
                     </div>
                   </div>
                 </motion.div>
                 <motion.div
                   variants={fadeIn}
-                  className="flex flex-wrap gap-6 items-center text-sm text-white/80"
+                  className="text-white/80 flex flex-wrap gap-6 items-center text-sm"
                 >
                   <div className="flex gap-2 items-center">
-                    <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                    <Star className="fill-yellow-400 w-4 h-4 text-yellow-400" />
                     <span>{movie.vote_average.toFixed(1)}</span>
                   </div>
                   <div className="flex gap-2 items-center">
-                    <Clock className="h-4 w-4" />
+                    <Clock className="w-4 h-4" />
                     <span>{movie.runtime} min</span>
                   </div>
                   <div className="flex gap-2 items-center">
-                    <CalendarDays className="h-4 w-4" />
+                    <CalendarDays className="w-4 h-4" />
                     <span>
                       {new Date(movie.release_date).toLocaleDateString(
                         "en-US",
@@ -329,7 +328,7 @@ export function MovieDetails() {
                       )}
                     </span>
                   </div>
-                  <div className="flex gap-2 flex-wrap">
+                  <div className="flex flex-wrap gap-2">
                     {movie.genres.map((genre) => (
                       <Badge
                         key={genre.id}
@@ -351,12 +350,12 @@ export function MovieDetails() {
           variants={fadeIn}
           initial="initial"
           animate="animate"
-          className="md:hidden flex gap-2 p-4 border-b sticky top-16 bg-background/80 backdrop-blur z-10"
+          className="md:hidden bg-background/80 flex sticky top-16 z-10 gap-2 p-4 border-b backdrop-blur"
         >
           {videos.length > 0 && (
             <Dialog>
               <Button size="sm" className="flex-1">
-                <Play className="mr-2 h-4 w-4" />
+                <Play className="mr-2 w-4 h-4" />
                 Watch Trailer
               </Button>
               <DialogContent className="max-w-4xl">
@@ -392,7 +391,7 @@ export function MovieDetails() {
             className="w-9 h-9"
             onClick={handleShare}
           >
-            <Share2 className="h-4 w-4" />
+            <Share2 className="w-4 h-4" />
           </Button>
         </motion.div>
 
@@ -420,11 +419,11 @@ export function MovieDetails() {
                   variants={fadeIn}
                   initial="initial"
                   animate="animate"
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                  className="md:grid-cols-3 grid grid-cols-1 gap-8"
                 >
                   {crew.map((person) => (
                     <div key={person.id} className="space-y-1">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         {person.job}
                       </p>
                       <p className="font-medium">{person.name}</p>
@@ -439,7 +438,7 @@ export function MovieDetails() {
                 variants={stagger}
                 initial="initial"
                 animate="animate"
-                className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4"
+                className="md:grid-cols-4 lg:grid-cols-8 grid grid-cols-2 gap-4"
               >
                 {credits.map((credit) => (
                   <motion.div
@@ -452,17 +451,17 @@ export function MovieDetails() {
                         <img
                           src={getImageUrl(credit.profile_path, "w500")}
                           alt={credit.name}
-                          className="w-full h-full object-cover"
+                          className="object-cover w-full h-full"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Info className="w-8 h-8 text-muted-foreground" />
+                        <div className="flex justify-center items-center w-full h-full">
+                          <Info className="text-muted-foreground w-8 h-8" />
                         </div>
                       )}
                     </div>
                     <div className="space-y-1">
-                      <p className="font-medium line-clamp-1">{credit.name}</p>
-                      <p className="text-sm text-muted-foreground line-clamp-1">
+                      <p className="line-clamp-1 font-medium">{credit.name}</p>
+                      <p className="text-muted-foreground line-clamp-1 text-sm">
                         {credit.character}
                       </p>
                     </div>
@@ -476,7 +475,7 @@ export function MovieDetails() {
                 variants={stagger}
                 initial="initial"
                 animate="animate"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
+                className="md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 grid grid-cols-1 gap-6"
               >
                 {similarMovies.map((movie) => (
                   <motion.div key={movie.id} variants={fadeIn}>
